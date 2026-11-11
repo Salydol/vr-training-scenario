@@ -1,0 +1,11 @@
+{
+    "name": "VRTraining",
+    "rootNamespace": "VRTraining",
+    "references": [
+        "Unity.XR.Interaction.Toolkit",
+        "Unity.XR.CoreUtils",
+        "Unity.InputSystem",
+        "Unity.TextMeshPro"
+    ],
+    "autoReferenced": true
+}
