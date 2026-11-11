@@ -9,12 +9,16 @@ namespace VRTraining.Player
     {
         [SerializeField] private GameObject simulatorPrefab;
 
+        // симулятор один на всю игру и переезжает между сценами
+        private static GameObject simulator;
+
         private void Start()
         {
-            if (XRSettings.isDeviceActive)
+            if (XRSettings.isDeviceActive || simulator != null)
                 return;
 
-            Instantiate(simulatorPrefab);
+            simulator = Instantiate(simulatorPrefab);
+            DontDestroyOnLoad(simulator);
         }
     }
 }
