@@ -1,0 +1,38 @@
+# Папки, которые Unity создаёт сам
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Файлы IDE
+.vs/
+.idea/
+.vscode/
+*.csproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+.vsconfig
+
+# Сборки
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Отчёты о падениях
+sysinfo.txt
+crashlytics-build.properties
+
+# Системный мусор
+.DS_Store
+Thumbs.db
