@@ -14,6 +14,9 @@ namespace VRTraining.UI
         [SerializeField] private TMP_Text groupTitlePrefab;
         [SerializeField] private StepRowView rowPrefab;
         [SerializeField] private float distanceFromPlayer = 2f;
+        // запас до стены, панель широкая и краями может задеть стену
+        [SerializeField] private float wallMargin = 0.8f;
+        [SerializeField] private Vector3 roomCenter = Vector3.zero;
 
         private void Awake()
         {
@@ -60,12 +63,29 @@ namespace VRTraining.UI
             Transform head = Camera.main.transform;
 
             // наклон головы не учитываем, иначе панель может уехать в пол или потолок
-            Vector3 forward = head.forward;
-            forward.y = 0f;
-            forward.Normalize();
+            Vector3 direction = head.forward;
+            direction.y = 0f;
+            direction.Normalize();
 
-            transform.position = head.position + forward * distanceFromPlayer;
-            transform.rotation = Quaternion.LookRotation(forward);
+            // если игрок стоит носом к стене, панель залезет в стену и обрежется
+            // тогда ставим ее со стороны центра комнаты
+            if (IsBlocked(head.position, direction))
+            {
+                Vector3 toCenter = roomCenter - head.position;
+                toCenter.y = 0f;
+
+                if (toCenter.sqrMagnitude > 0.01f)
+                    direction = toCenter.normalized;
+            }
+
+            transform.position = head.position + direction * distanceFromPlayer;
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
+
+        // есть ли что то между игроком и местом куда хотим поставить панель
+        private bool IsBlocked(Vector3 from, Vector3 direction)
+        {
+            return Physics.Raycast(from, direction, distanceFromPlayer + wallMargin);
         }
     }
 }

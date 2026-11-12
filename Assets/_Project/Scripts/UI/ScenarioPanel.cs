@@ -12,7 +12,7 @@ namespace VRTraining.UI
     {
         private const string OrderHint = "Выполняйте шаги по порядку сверху вниз";
         private const string SequenceBrokenMessage = "Нарушен порядок! Группа «{0}» закрыта";
-        private const string FinishedMessage = "Сценарий завершён, смотрите результаты";
+        private const string FinishedMessage = "Сценарий завершён, панель с результатами рядом с вами";
 
         [SerializeField] private TMP_Text groupTitleText;
         [SerializeField] private TMP_Text progressText;
